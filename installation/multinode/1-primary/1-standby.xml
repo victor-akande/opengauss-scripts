@@ -1,0 +1,62 @@
+<!-- A simplified configuration file for the deployment of openGauss using 2 nodes (1 primary and 1 standby) -->
+<!-- Do not copy and use as is -->
+<!-- Be sure to modify the configurations based on requirements -->
+<!-- Values between two curly brackets {{}}, e.g. {{10.0.0.10}} must be replaced with your own values according to specifications and requirements -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT>
+<!-- Overall information about openGauss -->
+<CLUSTER>
+<!-- Database name -->
+<PARAM name="clusterName" value="{{production}}" />
+<!-- Database node name (use the hostname of the servers and separate with a comma) -->
+<PARAM name="nodeNames" value="{{node1}},{{node2}}" />
+<!-- Database installation directory -->
+<PARAM name="gaussdbAppPath" value="/opt/huawei/install/app" />
+<!-- Log directory -->
+<PARAM name="gaussdbLogPath" value="/var/log/omm" />
+<!-- Temporary file directory -->
+<PARAM name="tmpMppdbPath" value="/opt/huawei/tmp"/>
+<!-- Database tool directory -->
+<PARAM name="gaussdbToolPath" value="/opt/huawei/install/om" />
+<!--Directory of the core file of the database -->
+<PARAM name="corePath" value="/opt/huawei/corefile"/>
+<!-- Node IP address, which corresponds to the database node names -->
+<PARAM name="backIp1s" value="{{10.0.0.10}},{{10.0.0.20}}"/> 
+</CLUSTER>
+<!-- Information about the node deployment on each server -->
+<DEVICELIST>
+<!-- Deployment information on node 1 -->
+<DEVICE sn="{{node1}}">
+<!-- Host name of the first node -->
+<PARAM name="name" value="{{node1}}"/>
+<!-- AZ (availability zone) where the first node is located and priority of the AZ -->
+<PARAM name="azName" value="AZ1"/>
+<PARAM name="azPriority" value="1"/>
+<!-- IP address of the first node. If only one NIC (network interface card) is available for the server, set backIP1 and sshIP1 to the same IP address. -->
+<PARAM name="backIp1" value="{{10.0.0.10}}"/>
+<PARAM name="sshIp1" value="{{10.0.0.10}}"/>
+
+<!--dn-->
+<PARAM name="dataNum" value="1"/>
+<PARAM name="dataPortBase" value="{{15400}}"/>
+<!-- Format <Directory of the first datanode>,<hostname_of_second_node>,<directory of the second datanode> -->>
+<PARAM name="dataNode1" value="/opt/huawei/install/data/dn,{{node2}},/opt/huawei/install/data/dn"/>
+<PARAM name="dataNode1_syncNum" value="0"/>
+</DEVICE>
+
+<!-- Node deployment information on the second node. The value of name is the host name. -->
+<DEVICE sn="{{node2}}">
+<!-- Host name of the second node  -->
+<PARAM name="name" value="{{node2}}"/>
+<!-- AZ (availability zone) where the second node is located and priority of the AZ -->
+<PARAM name="azName" value="AZ1"/>
+<PARAM name="azPriority" value="1"/>
+<!-- IP address of the second node. If only one NIC (network interface card) is available for the server, set backIP1 and sshIP1 to the same IP address. -->
+<PARAM name="backIp1" value="{{10.0.0.20}}"/>
+<PARAM name="sshIp1" value="{{10.0.0.20}}"/>
+</DEVICE>
+
+</DEVICELIST>
+
+</ROOT>
