@@ -1,6 +1,6 @@
 # Single-Node openGauss Configuration
 
-- **Source:** [installation/singlenode/1-node.xml](installation/singlenode/1-node.xml)
+- **Source:** [installation/singlenode/1-node.xml](./1-node.xml)
 
 **Overview**
 - **Purpose:** A minimal XML template for deploying openGauss on a single node.
@@ -33,8 +33,8 @@ cp installation/singlenode/1-node.xml installation/singlenode/1-node.custom.xml
 - Validate changes in a staging environment before production.
 
 **Notes & References**
-- Installer entry: [installation/init.sh](installation/init.sh)
-- Single-node template: [installation/singlenode/1-node.xml](installation/singlenode/1-node.xml)
+- Installer entry: [installation/init.sh](../init.sh)
+- Single-node template: [installation/singlenode/1-node.xml](./1-node.xml)
 
 **Placeholders to Replace (from `1-node.xml`)**
 - **Line 6:** `{{huawei}}` : Replace with your cluster name (example: `mycluster` or `prod-cluster`). Use a short, unique identifier (no spaces).
